@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>💖 Untuk Lucia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0d0812;
+        }
+
+        /* ── BACKGROUND UTAMA ── */
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(145deg, #1a0e1e 0%, #2d1a2e 30%, #1f1028 60%, #0d0812 100%);
+        }
+
+        /* ── ORB CAHAYA ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 77, 122, 0.15);
+            top: -100px;
+            left: -100px;
+            animation: orbFloat 12s ease-in-out infinite alternate;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 150, 80, 0.10);
+            bottom: -80px;
+            right: -80px;
+            animation: orbFloat 15s ease-in-out infinite alternate-reverse;
+        }
+
+        .orb3 {
+            width: 250px;
+            height: 250px;
+            background: rgba(200, 100, 255, 0.08);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbFloat 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(40px, -30px) scale(1.2);
+            }
+        }
+
+        /* ── BUNGA & HATI JATUH ── */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .falling-item {
+            position: absolute;
+            font-size: 1.6rem;
+            animation: fallDown linear infinite;
+            opacity: 0.5;
+            user-select: none;
+        }
+
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(0.8);
+                opacity: 0.3;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(1.2);
+                opacity: 0.1;
+            }
+        }
+
+        /* ── GLITTER SPARKLE ── */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 200, 200, 0.5);
+            animation: sparkleAnim 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                opacity: 0.1;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* ── BUKU CONTAINER ── */
+        .book-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            max-height: 800px;
+            overflow: hidden;
+            touch-action: none;
+            cursor: grab;
+            border-radius: 24px;
+            box-shadow: 0 0 80px rgba(255, 77, 122, 0.08), inset 0 0 80px rgba(255, 77, 122, 0.03);
+            background: rgba(20, 12, 22, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 77, 122, 0.08);
+        }
+
+        .book-container:active {
+            cursor: grabbing;
+        }
+
+        /* ── PAGES WRAPPER ── */
+        .pages-wrapper {
+            display: flex;
+            height: 100%;
+            width: 200%;
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+        }
+
+        .pages-wrapper.swiped {
+            transform: translateX(-50%);
+        }
+
+        /* ── PAGE ── */
+        .page {
+            width: 50%;
+            height: 100%;
+            padding: 50px 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* ── PAGE 1 ── */
+        #page1 {
+            background: transparent;
+        }
+
+        #page1 .main-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b8a, #ff9a76, #ff6b8a);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            text-shadow: 0 0 60px rgba(255, 77, 122, 0.15);
+        }
+
+        @keyframes gradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        #page1 .sub-title {
+            font-size: 1.1rem;
+            color: #d4b8c8;
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-bottom: 28px;
+            line-height: 1.6;
+            max-width: 320px;
+            text-shadow: 0 0 30px rgba(255, 77, 122, 0.05);
+        }
+
+        #page1 .sub-title strong {
+            color: #ff7a9e;
+            font-weight: 400;
+        }
+
+        #page1 .description {
+            font-size: 0.95rem;
+            color: #b8a0b0;
+            line-height: 1.8;
+            max-width: 320px;
+            margin-bottom: 30px;
+            font-style: italic;
+            padding: 16px 20px;
+            background: rgba(255, 77, 122, 0.05);
+            border-radius: 16px;
+            border-left: 3px solid rgba(255, 77, 122, 0.2);
+        }
+
+        #page1 .arrow-hint {
+            font-size: 2.8rem;
+            animation: bounceArrow 2s ease-in-out infinite;
+            color: rgba(255, 77, 122, 0.5);
+            margin-top: 10px;
+            letter-spacing: 6px;
+        }
+
+        @keyframes bounceArrow {
+            0%,
+            100% {
+                transform: translateX(0);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateX(12px);
+                opacity: 1;
+            }
+        }
+
+        #page1 .page-number {
+            position: absolute;
+            bottom: 28px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.12);
+            letter-spacing: 4px;
+            font-weight: 300;
+        }
+
+        /* ── PAGE 2 (Preview) ── */
+        #page2 {
+            background: transparent;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        #page2 .preview-text {
+            font-size: 1.6rem;
+            color: #d4b8c8;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        #page2 .preview-text span {
+            color: #ff6b8a;
+        }
+
+        #page2 .preview-heart {
+            font-size: 4rem;
+            animation: pulseHeart 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulseHeart {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 480px) {
+            .book-container {
+                max-height: 100vh;
+                border-radius: 0;
+                backdrop-filter: blur(2px);
+            }
+            #page1 .main-title {
+                font-size: 2.2rem;
+            }
+            #page1 .sub-title {
+                font-size: 0.95rem;
+            }
+            #page1 .description {
+                font-size: 0.85rem;
+                padding: 14px 16px;
+            }
+            .page {
+                padding: 30px 20px 30px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .book-container {
+                border-radius: 32px;
+            }
+            #page1 .main-title {
+                font-size: 3.4rem;
+            }
+        }
+
+        /* ── Scrollbar hilang ── */
+        .page::-webkit-scrollbar {
+            display: none;
+        }
+        .page {
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== BACKGROUND LAYER ====== -->
+    <div class="bg-layer"></div>
+
+    <!-- ====== ORB CAHAYA ====== -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <!-- ====== BUNGA & HATI JATUH ====== -->
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <!-- ====== SPARKLE ====== -->
+    <div id="sparkleContainer"></div>
+
+    <!-- ====== BUKU ====== -->
+    <div class="book-container" id="bookContainer">
+        <div class="pages-wrapper" id="pagesWrapper">
+
+            <!-- HALAMAN 1 -->
+            <div class="page" id="page1">
+                <div class="main-title">💗 Ungkapan Cinta<br />Buat Lucia</div>
+                <div class="sub-title">
+                    ✦ <strong>INI HADIAH KECIL</strong> ✦<br />
+                    YANG GA SEBERAPA DAN<br />
+                    SEMOGA KAMU MENYUKAI NYA
+                </div>
+                <div class="description">
+                    “Ini bisa menjadi beberapa halaman,<br />
+                    dan ini halaman ke 1.<br />
+                    Cara beralih halaman kedua<br />
+                    tinggal <strong>geser dari kanan ke kiri</strong>,<br />
+                    kek melanjutkan buku<br />
+                    dari halaman selanjutnya.”
+                </div>
+                <div class="arrow-hint">➜ ➜ ➜</div>
+                <div class="page-number">— 01 —</div>
+            </div>
+
+            <!-- HALAMAN 2 (Preview) -->
+            <div class="page" id="page2">
+                <div class="preview-heart">💖</div>
+                <div class="preview-text">
+                    Halaman <span>2</span> ·<br />
+                    Bersiaplah...
+                </div>
+                <div style="font-size:0.8rem;color:rgba(255,255,255,0.15);margin-top:20px;letter-spacing:2px;">
+                    geser kembali untuk kembali
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // =============================================
+        // 1. BUNGA & HATI JATUH (Random)
+        // =============================================
+        const items = ['🌸', '🌹', '💗', '🌺', '💖', '🌷', '💕', '🌼', '❤️', '🌻', '💝', '🥀'];
+        const container = document.getElementById('petalsContainer');
+
+        for (let i = 0; i < 30; i++) {
+            const el = document.createElement('div');
+            el.className = 'falling-item';
+            el.textContent = items[Math.floor(Math.random() * items.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.fontSize = (1.0 + Math.random() * 1.8) + 'rem';
+            el.style.animationDuration = (8 + Math.random() * 14) + 's';
+            el.style.animationDelay = (Math.random() * 18) + 's';
+            el.style.opacity = 0.2 + Math.random() * 0.4;
+            container.appendChild(el);
+        }
+
+        // =============================================
+        // 2. SPARKLE (Bintang kecil)
+        // =============================================
+        const sparkleContainer = document.getElementById('sparkleContainer');
+        for (let i = 0; i < 50; i++) {
+            const s = document.createElement('div');
+            s.className = 'sparkle';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.animationDelay = (Math.random() * 5) + 's';
+            s.style.animationDuration = (2 + Math.random() * 4) + 's';
+            s.style.width = (2 + Math.random() * 5) + 'px';
+            s.style.height = s.style.width;
+            sparkleContainer.appendChild(s);
+        }
+
+        // =============================================
+        // 3. SLIDE GESER (Kanan ke Kiri)
+        // =============================================
+        const wrapper = document.getElementById('pagesWrapper');
+        const book = document.getElementById('bookContainer');
+
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        let isSwiped = false; // false = page1, true = page2
+
+        const SWIPE_THRESHOLD = 60;
+
+        // Touch events
+        book.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }, { passive: true });
+
+        book.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            const diff = startX - currentX;
+
+            // Efek drag halus
+            if (isSwiped) {
+                // Jika sudah di page2, geser ke kiri => kembali
+                if (diff < -20) {
+                    wrapper.style.transition = 'none';
+                    wrapper.style.transform = `translateX(${-50 + (diff / window.innerWidth) * 50}%)`;
+                }
+            } else {
+                // Jika di page1, geser ke kanan => maju
+                if (diff > 20) {
+                    wrapper.style.transition = 'none';
+                    wrapper.style.transform = `translateX(${-(diff / window.innerWidth) * 50}%)`;
+                }
+            }
+        }, { passive: true });
+
+        book.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const diff = startX - currentX;
+
+            if (isSwiped) {
+                // Di page2, geser kiri untuk kembali
+                if (diff < -SWIPE_THRESHOLD) {
+                    isSwiped = false;
+                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(0)';
+                } else {
+                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(-50%)';
+                }
+            } else {
+                // Di page1, geser kanan untuk maju
+                if (diff > SWIPE_THRESHOLD) {
+                    isSwiped = true;
+                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(-50%)';
+                } else {
+                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(0)';
+                }
+            }
+
+            startX = 0;
+            currentX = 0;
+        }, { passive: true });
+
+        // Mouse events (desktop)
+        let mouseDown = false;
+        let mouseStartX = 0;
+
+        book.addEventListener('mousedown', (e) => {
+            mouseDown = true;
+            mouseStartX = e.clientX;
+            book.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!mouseDown) return;
+            const diff = mouseStartX - e.clientX;
+            if (isSwiped) {
+                if (diff < -20) {
+                    wrapper.style.transition = 'none';
+                    wrapper.style.transform = `translateX(${-50 + (diff / window.innerWidth) * 50}%)`;
+                }
+            } else {
+                if (diff > 20) {
+                    wrapper.style.transition = 'none';
+                    wrapper.style.transform = `translateX(${-(diff / window.innerWidth) * 50}%)`;
+                }
+            }
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (!mouseDown) return;
+            mouseDown = false;
+            book.style.cursor = 'grab';
+
+            const diff = mouseStartX - e.clientX;
+
+            if (isSwiped) {
+                if (diff < -SWIPE_THRESHOLD) {
+                    isSwiped = false;
+                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(0)';
+                } else {
+                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(-50%)';
+                }
+            } else {
+                if (diff > SWIPE_THRESHOLD) {
+                    isSwiped = true;
+                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(-50%)';
+                } else {
+                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                    wrapper.style.transform = 'translateX(0)';
+                }
+            }
+
+            mouseStartX = 0;
+        });
+
+        // =============================================
+        // 4. KEYBOARD (Arrow kiri/kanan)
+        // =============================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && !isSwiped) {
+                isSwiped = true;
+                wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                wrapper.style.transform = 'translateX(-50%)';
+            } else if (e.key === 'ArrowLeft' && isSwiped) {
+                isSwiped = false;
+                wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                wrapper.style.transform = 'translateX(0)';
+            }
+        });
+
+        console.log('💖 Untuk Lucia — Halaman 1 siap digeser!');
+    </script>
+</body>
+</html>
