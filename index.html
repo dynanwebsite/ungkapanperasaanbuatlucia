@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>💐 Untuk Nora — Raka</title>
     <style>
+        /* ============================================================
+                   RESET & BASE
+                ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -22,8 +25,12 @@
             overflow: hidden;
             color: #f5e6d3;
             width: 100%;
+            height: 100vh;
         }
 
+        /* ============================================================
+                   BACKGROUND LAYER
+                ============================================================ */
         .bg-layer {
             position: fixed;
             top: 0;
@@ -34,6 +41,9 @@
             z-index: 0;
         }
 
+        /* ============================================================
+                   ORB CAHAYA
+                ============================================================ */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -57,6 +67,15 @@
             right: -120px;
             animation: orbFloat 15s ease-in-out infinite alternate-reverse;
         }
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 215, 0, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbFloat 18s ease-in-out infinite alternate;
+        }
         @keyframes orbFloat {
             0% {
                 transform: translate(0, 0) scale(1);
@@ -66,6 +85,9 @@
             }
         }
 
+        /* ============================================================
+                   BUNGA JATUH (BACKGROUND)
+                ============================================================ */
         .petals-container {
             position: fixed;
             top: 0;
@@ -80,7 +102,7 @@
             position: absolute;
             font-size: 1.6rem;
             animation: fallDown linear infinite;
-            opacity: 0.15;
+            opacity: 0.12;
             user-select: none;
         }
         @keyframes fallDown {
@@ -89,7 +111,7 @@
                 opacity: 0.05;
             }
             50% {
-                opacity: 0.25;
+                opacity: 0.2;
             }
             100% {
                 transform: translateY(110vh) rotate(720deg) scale(1.2);
@@ -97,7 +119,9 @@
             }
         }
 
-        /* ===== CONTAINER LEBAR PENUH ===== */
+        /* ============================================================
+                   BOOK CONTAINER (BINGKAI)
+                ============================================================ */
         .book-container {
             position: relative;
             z-index: 1;
@@ -112,6 +136,7 @@
             box-shadow: 0 0 80px rgba(255, 77, 122, 0.05);
         }
 
+        /* Border glow */
         .book-container::before {
             content: '';
             position: absolute;
@@ -132,16 +157,19 @@
             }
         }
 
+        /* ============================================================
+                   PAGES WRAPPER (SLIDE)
+                ============================================================ */
         .pages-wrapper {
             display: flex;
             height: 100%;
-            width: 800%;
+            width: 1100%;
             transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: transform;
         }
 
         .page {
-            width: 12.5%;
+            width: 9.09%;
             height: 100%;
             padding: 30px 28px;
             display: flex;
@@ -156,6 +184,9 @@
             display: none;
         }
 
+        /* ============================================================
+                   BUTTON STYLE
+                ============================================================ */
         .btn-next {
             background: linear-gradient(135deg, #ff6b8a, #ff9a76);
             border: none;
@@ -188,9 +219,9 @@
             letter-spacing: 4px;
         }
 
-        /* ==========================================
+        /* ============================================================
                    PAGE 1 — LOADING
-                ========================================== */
+                ============================================================ */
         #page1 .loading-text {
             font-size: 1.5rem;
             color: #d4b8c8;
@@ -211,7 +242,7 @@
             width: 0%;
             background: linear-gradient(90deg, #ff6b8a, #ff9a76);
             border-radius: 10px;
-            animation: loadFill 3s ease-in-out forwards;
+            animation: loadFill 3.5s ease-in-out forwards;
         }
         @keyframes loadFill {
             0% {
@@ -227,83 +258,223 @@
             color: #6a5a6a;
         }
 
-        /* ==========================================
-                   PAGE 2 — BUNGA MENUTUP + MEMBUKA
-                ========================================== */
+        /* ============================================================
+                   PAGE 2 — ANIMASI LOVE + NORA
+                ============================================================ */
         #page2 {
             overflow: hidden;
             position: relative;
+            background: radial-gradient(ellipse at center, #1a0a2a, #0d0812);
         }
 
-        .flower-layer {
+        .love-canvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(13, 8, 18, 0.92);
-            z-index: 3;
-            animation: flowerClose 3.5s ease-in-out forwards;
-            pointer-events: none;
+            z-index: 1;
         }
 
-        .flower-layer .big-flower {
-            font-size: 14rem;
-            animation: flowerPulse 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 100px rgba(70, 150, 255, 0.3));
+        .love-particle {
+            position: absolute;
+            font-size: 1.0rem;
+            color: #ff4d7a;
+            opacity: 0;
+            animation: loveForm 4s ease-in-out forwards;
+            font-family: 'Georgia', serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(255, 77, 122, 0.3);
         }
 
-        @keyframes flowerPulse {
-            0%,
-            100% {
-                transform: scale(0.8) rotate(-5deg);
-                opacity: 0.6;
-            }
-            50% {
-                transform: scale(1.2) rotate(5deg);
-                opacity: 1;
-            }
-        }
-
-        @keyframes flowerClose {
+        @keyframes loveForm {
             0% {
                 opacity: 0;
-                transform: scale(0.3);
+                transform: translate(0, 0) scale(0.5);
             }
-            25% {
+            40% {
                 opacity: 1;
-                transform: scale(1.1);
+                transform: translate(var(--tx), var(--ty)) scale(1.1);
             }
-            50% {
+            70% {
+                opacity: 1;
+                transform: translate(var(--tx), var(--ty)) scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(var(--tx), var(--ty)) scale(1);
+            }
+        }
+
+        #page2 .nora-name {
+            position: relative;
+            z-index: 10;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b8a, #ffd700, #ff6b8a);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            padding: 20px 40px;
+            border-radius: 30px;
+            transition: 0.3s;
+            text-shadow: 0 0 60px rgba(255, 107, 138, 0.2);
+            opacity: 0;
+            animation: noraAppear 1s ease-out 3.5s forwards,
+                noraGlow 2s ease-in-out 3.5s infinite,
+                gradientShift 3s ease-in-out 3.5s infinite;
+        }
+        #page2 .nora-name:hover {
+            transform: scale(1.08);
+        }
+        @keyframes noraAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
                 opacity: 1;
                 transform: scale(1);
             }
-            75% {
-                opacity: 0.8;
-                transform: scale(1.05);
-            }
+        }
+        @keyframes noraGlow {
+            0%,
             100% {
-                opacity: 0;
-                transform: scale(1.5);
-                visibility: hidden;
+                filter: drop-shadow(0 0 20px rgba(255, 107, 138, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.4));
+            }
+        }
+        @keyframes gradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
             }
         }
 
-        #page2 .label-bloom {
-            font-size: 1.5rem;
-            color: #6cb4ee;
-            z-index: 2;
+        #page2 .click-hint {
             position: relative;
-            margin-top: 40px;
-            text-shadow: 0 0 30px rgba(108, 180, 238, 0.2);
+            z-index: 10;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 10px;
+            animation: blinkHint 1.5s ease-in-out infinite;
+        }
+        @keyframes blinkHint {
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.8;
+            }
         }
 
-        /* ==========================================
-                   PAGE 3 — PERTUNJUKAN SPESIAL
-                ========================================== */
+        /* ============================================================
+                   PAGE 3 — PERTUNJUKAN SPESIAL + TIRAI
+                ============================================================ */
+        #page3 {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tirai-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            display: flex;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .tirai-kiri,
+        .tirai-kanan {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(180deg, #8B0000, #5C0000, #3A0000);
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+            box-shadow: inset -10px 0 40px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .tirai-kiri {
+            left: 0;
+            transform: translateX(0);
+            border-right: 2px solid rgba(255, 215, 0, 0.1);
+        }
+        .tirai-kanan {
+            right: 0;
+            transform: translateX(0);
+            border-left: 2px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .tirai-kiri::before,
+        .tirai-kanan::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.2) 0px,
+                    rgba(0, 0, 0, 0) 10px,
+                    rgba(0, 0, 0, 0.1) 20px,
+                    rgba(0, 0, 0, 0) 30px);
+        }
+
+        .tirai-kiri::after,
+        .tirai-kanan::after {
+            content: '✦ ✦ ✦';
+            position: absolute;
+            top: 20px;
+            font-size: 1.2rem;
+            color: rgba(255, 215, 0, 0.15);
+            letter-spacing: 10px;
+        }
+
+        .tirai-kiri .tirai-teks,
+        .tirai-kanan .tirai-teks {
+            font-size: 1.8rem;
+            color: rgba(255, 215, 0, 0.08);
+            letter-spacing: 15px;
+            font-weight: 300;
+            writing-mode: vertical-rl;
+        }
+
+        .tirai-container.open .tirai-kiri {
+            transform: translateX(-100%);
+        }
+        .tirai-container.open .tirai-kanan {
+            transform: translateX(100%);
+        }
+
+        #page3 .special-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 30px;
+        }
+
         #page3 .title-special {
             font-size: 2.8rem;
             font-weight: 700;
@@ -328,9 +499,65 @@
             font-style: italic;
         }
 
-        /* ==========================================
-                   PAGE 4,5,6 — BABAK
-                ========================================== */
+        .btn-tirai {
+            background: linear-gradient(135deg, #8B0000, #5C0000);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            font-weight: 700;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            z-index: 10;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(139, 0, 0, 0.3);
+        }
+        .btn-tirai:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(139, 0, 0, 0.5);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        /* ============================================================
+                   PAGE 4 — BINTANG MALAM INI
+                ============================================================ */
+        #page4 .bintang-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 0 0 60px rgba(255, 215, 0, 0.15);
+            letter-spacing: 4px;
+        }
+        #page4 .bintang-sub {
+            font-size: 1.8rem;
+            color: #ff7a9e;
+            margin: 8px 0 16px;
+            letter-spacing: 6px;
+        }
+        #page4 .bintang-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #d4c6cf;
+            max-width: 380px;
+            font-style: italic;
+        }
+        #page4 .bintang-text strong {
+            color: #ff9a76;
+            font-style: normal;
+        }
+        #page4 .bintang-time {
+            font-size: 0.85rem;
+            color: #6a5a6a;
+            margin-top: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================================
+                   PAGE 5,6,7 — BABAK
+                ============================================================ */
         .babak-title {
             font-size: 2rem;
             color: #ff7a9e;
@@ -349,56 +576,64 @@
             font-size: 1.2rem;
         }
 
-        /* ==========================================
-                   PAGE 7 — STANDING OVATION
-                ========================================== */
-        #page7 .ovation-title {
+        /* ============================================================
+                   PAGE 8 — STANDING OVATION
+                ============================================================ */
+        #page8 .ovation-title {
             font-size: 3rem;
             font-weight: 700;
             color: #ffd700;
             text-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
         }
-        #page7 .ovation-text {
+        #page8 .ovation-text {
             font-size: 1.05rem;
             line-height: 2;
             color: #d4c6cf;
             max-width: 380px;
             margin: 14px 0;
         }
-        #page7 .ovation-sign {
+        #page8 .ovation-sign {
             font-size: 1rem;
             color: #b8a0b0;
             margin-top: 12px;
             font-style: italic;
         }
 
-        /* ==========================================
-                   PAGE 8 — APRESIASI + BUKET
-                ========================================== */
-        #page8 .apresiasi-title {
-            font-size: 2.8rem;
-            color: #6cb4ee;
-            letter-spacing: 4px;
-            text-shadow: 0 0 40px rgba(108, 180, 238, 0.1);
+        /* ============================================================
+                   PAGE 9 — APRESIASI + BUKET
+                ============================================================ */
+        #page9 .apresiasi-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ff7a9e;
+            letter-spacing: 6px;
+            text-shadow: 0 0 40px rgba(255, 122, 158, 0.15);
         }
-        #page8 .apresiasi-sub {
-            font-size: 1.1rem;
+        #page9 .apresiasi-sub {
+            font-size: 1.3rem;
             color: #d4c6cf;
-            margin: 12px 0;
+            margin: 8px 0;
+            letter-spacing: 2px;
         }
-        #page8 .apresiasi-sub strong {
-            color: #ff9a76;
+        #page9 .apresiasi-sub strong {
+            color: #ffd700;
+            font-weight: 700;
         }
 
-        /* ── BUKET BUNGA CANTIK ── */
-        .buket {
+        /* ── BUKET BUNGA ── */
+        .buket-container {
             position: relative;
-            width: 280px;
-            height: 260px;
+            width: 320px;
+            height: 280px;
             margin: 10px auto;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .buket-container:hover {
+            transform: scale(1.03);
         }
 
-        .buket .batang-group {
+        .buket-container .batang-group {
             position: absolute;
             bottom: 10px;
             width: 100%;
@@ -408,7 +643,7 @@
             z-index: 0;
         }
 
-        .buket .batang {
+        .buket-container .batang {
             width: 5px;
             height: 90px;
             background: linear-gradient(to top, #2d7a3a, #4caf50);
@@ -416,28 +651,28 @@
             transform-origin: bottom;
         }
 
-        .buket .batang:nth-child(1) {
+        .buket-container .batang:nth-child(1) {
             transform: rotate(-18deg);
             height: 100px;
         }
-        .buket .batang:nth-child(2) {
+        .buket-container .batang:nth-child(2) {
             transform: rotate(-8deg);
             height: 120px;
         }
-        .buket .batang:nth-child(3) {
+        .buket-container .batang:nth-child(3) {
             transform: rotate(0deg);
             height: 130px;
         }
-        .buket .batang:nth-child(4) {
+        .buket-container .batang:nth-child(4) {
             transform: rotate(8deg);
             height: 120px;
         }
-        .buket .batang:nth-child(5) {
+        .buket-container .batang:nth-child(5) {
             transform: rotate(18deg);
             height: 100px;
         }
 
-        .buket .bunga {
+        .buket-container .bunga {
             position: absolute;
             font-size: 2.8rem;
             animation: ayunBunga 3s ease-in-out infinite alternate;
@@ -445,43 +680,43 @@
             filter: drop-shadow(0 0 20px rgba(255, 200, 200, 0.1));
         }
 
-        .buket .bunga:nth-child(6) {
+        .buket-container .bunga:nth-child(6) {
             bottom: 85px;
             left: 10px;
             font-size: 3rem;
             animation-delay: 0.1s;
         }
-        .buket .bunga:nth-child(7) {
+        .buket-container .bunga:nth-child(7) {
             bottom: 105px;
             left: 55px;
             font-size: 3.4rem;
             animation-delay: 0.4s;
         }
-        .buket .bunga:nth-child(8) {
+        .buket-container .bunga:nth-child(8) {
             bottom: 115px;
             left: 110px;
             font-size: 4rem;
             animation-delay: 0.7s;
         }
-        .buket .bunga:nth-child(9) {
+        .buket-container .bunga:nth-child(9) {
             bottom: 105px;
             right: 55px;
             font-size: 3.4rem;
             animation-delay: 0.4s;
         }
-        .buket .bunga:nth-child(10) {
+        .buket-container .bunga:nth-child(10) {
             bottom: 85px;
             right: 10px;
             font-size: 3rem;
             animation-delay: 0.1s;
         }
-        .buket .bunga:nth-child(11) {
+        .buket-container .bunga:nth-child(11) {
             bottom: 65px;
             left: 35px;
             font-size: 2.4rem;
             animation-delay: 0.6s;
         }
-        .buket .bunga:nth-child(12) {
+        .buket-container .bunga:nth-child(12) {
             bottom: 65px;
             right: 35px;
             font-size: 2.4rem;
@@ -497,28 +732,45 @@
             }
         }
 
-        #page8 .gift-note {
+        #page9 .gift-note {
             font-size: 0.85rem;
             color: #8a7a8a;
             margin: 4px 0;
+            letter-spacing: 1px;
         }
-        #page8 .gift-date {
+        #page9 .gift-note strong {
+            color: #b8a0b0;
+        }
+        #page9 .gift-date {
             font-size: 0.75rem;
             color: #6a5a6a;
             margin-top: 4px;
             font-style: italic;
+            letter-spacing: 2px;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ============================================================
+                   RESPONSIVE
+                ============================================================ */
         @media (max-width: 480px) {
             .page {
                 padding: 20px 16px;
+            }
+            #page2 .nora-name {
+                font-size: 3.5rem;
+                padding: 10px 20px;
             }
             #page3 .title-special {
                 font-size: 2rem;
             }
             #page3 .sub-special {
                 font-size: 1.1rem;
+            }
+            #page4 .bintang-title {
+                font-size: 2rem;
+            }
+            #page4 .bintang-sub {
+                font-size: 1.4rem;
             }
             .babak-title {
                 font-size: 1.5rem;
@@ -527,28 +779,31 @@
                 font-size: 1rem;
                 max-width: 300px;
             }
-            #page7 .ovation-title {
+            #page8 .ovation-title {
                 font-size: 2.2rem;
             }
-            #page8 .apresiasi-title {
-                font-size: 2rem;
+            #page9 .apresiasi-title {
+                font-size: 2.2rem;
             }
-            .buket {
+            .buket-container {
                 width: 220px;
                 height: 210px;
             }
-            .buket .bunga {
+            .buket-container .bunga {
                 font-size: 2.2rem;
             }
-            .buket .bunga:nth-child(8) {
+            .buket-container .bunga:nth-child(8) {
                 font-size: 3.2rem;
             }
-            .flower-layer .big-flower {
-                font-size: 8rem;
-            }
-            .btn-next {
+            .btn-next,
+            .btn-tirai {
                 padding: 12px 28px;
                 font-size: 0.95rem;
+            }
+            .tirai-kiri .tirai-teks,
+            .tirai-kanan .tirai-teks {
+                font-size: 1rem;
+                letter-spacing: 8px;
             }
         }
 
@@ -556,61 +811,99 @@
             .page {
                 padding: 40px 50px;
             }
-            .buket {
+            .buket-container {
                 width: 340px;
                 height: 300px;
             }
-            .buket .bunga {
+            .buket-container .bunga {
                 font-size: 3.4rem;
             }
-            .buket .bunga:nth-child(8) {
+            .buket-container .bunga:nth-child(8) {
                 font-size: 4.6rem;
+            }
+            #page2 .nora-name {
+                font-size: 7rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- ============================================================
+    BACKGROUND
+    ============================================================ -->
     <div class="bg-layer"></div>
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 
     <div class="petals-container" id="petalsContainer"></div>
 
+    <!-- ============================================================
+    BOOK CONTAINER
+    ============================================================ -->
     <div class="book-container" id="bookContainer">
         <div class="pages-wrapper" id="pagesWrapper">
 
-            <!-- ===== HALAMAN 1 — LOADING ===== -->
+            <!-- ==========================================================
+            PAGE 1 — LOADING
+            ========================================================== -->
             <div class="page" id="page1">
                 <div class="loading-text">✨ Sebentar, bunganya sedang mekar...</div>
                 <div class="loading-bar"><div class="fill"></div></div>
                 <div class="loading-label">100%</div>
-                <button class="btn-next" onclick="goToPage(1)">➜ Buka</button>
                 <div class="page-number">01</div>
             </div>
 
-            <!-- ===== HALAMAN 2 — BUNGA MENUTUP + MEMBUKA ===== -->
+            <!-- ==========================================================
+            PAGE 2 — ANIMASI LOVE + NORA
+            ========================================================== -->
             <div class="page" id="page2">
-                <div class="flower-layer">
-                    <div class="big-flower">🌼</div>
-                </div>
-                <div class="label-bloom">🌸 Bunga biru mekar...</div>
-                <button class="btn-next" onclick="goToPage(2)" style="z-index:4;">➜ Buka tirai</button>
+                <div class="love-canvas" id="loveCanvas"></div>
+                <div class="nora-name" id="noraName" onclick="goToPage(2)">✦ NORA ✦</div>
+                <div class="click-hint">✦ klik namaku untuk lanjut ✦</div>
                 <div class="page-number">02</div>
             </div>
 
-            <!-- ===== HALAMAN 3 — PERTUNJUKAN SPESIAL ===== -->
+            <!-- ==========================================================
+            PAGE 3 — PERTUNJUKAN SPESIAL + TIRAI
+            ========================================================== -->
             <div class="page" id="page3">
-                <div class="title-special">🎭 PERTUNJUKAN SPESIAL</div>
-                <div class="sub-special">Khusus buat sayangku <strong>Nora</strong></div>
-                <div style="font-size:1.1rem; color:#b8a0b0; margin:6px 0;">untuk Nora</div>
-                <div class="tap-hint">✦ Buka tirai ✦<br />tap tainya buat email cerita</div>
-                <button class="btn-next" onclick="goToPage(3)">➜ Buka tirai</button>
+                <div class="tirai-container" id="tiraiContainer">
+                    <div class="tirai-kiri"><div class="tirai-teks">✦</div></div>
+                    <div class="tirai-kanan"><div class="tirai-teks">✦</div></div>
+                </div>
+                <div class="special-content">
+                    <div class="title-special">🎭 PERTUNJUKAN SPESIAL</div>
+                    <div class="sub-special">Khusus buat sayangku <strong>Nora</strong></div>
+                    <div style="font-size:1.1rem; color:#b8a0b0; margin:6px 0;">untuk Nora</div>
+                    <div class="tap-hint">✦ Buka tirai ✦<br />tap tirainya buat email cerita</div>
+                    <button class="btn-tirai" id="btnTirai">➜ Buka tirai</button>
+                </div>
                 <div class="page-number">03</div>
             </div>
 
-            <!-- ===== HALAMAN 4 — BABAK 1 ===== -->
+            <!-- ==========================================================
+            PAGE 4 — BINTANG MALAM INI
+            ========================================================== -->
             <div class="page" id="page4">
+                <div class="bintang-title">✦ BINTANG MALAM INI ✦</div>
+                <div class="bintang-sub">Nora</div>
+                <div class="bintang-text">
+                    sayangg, aku cuma mau bahas satu foto kamu.<br />
+                    cuma kamu rebahan, rambut agak berantakan,<br />
+                    senyum kecil, dan mata yang masih manja.<br />
+                    tapi entah kenapa, hasilnya terlalu berbahaya.
+                </div>
+                <div class="bintang-time">⏱ 00:27 / 00:46</div>
+                <button class="btn-next" onclick="goToPage(4)">Mulai ceritanya ➜</button>
+                <div class="page-number">04</div>
+            </div>
+
+            <!-- ==========================================================
+            PAGE 5 — BABAK 1
+            ========================================================== -->
+            <div class="page" id="page5">
                 <div class="babak-title">🌙 BABAK 1 / 3</div>
                 <div class="babak-content">
                     <strong>rambut yang jatuhnya terlalu pas</strong><br /><br />
@@ -619,12 +912,14 @@
                     diagonalnya pas, acaknya cantik,<br />
                     beratkananya malah estetik.
                 </div>
-                <button class="btn-next" onclick="goToPage(4)">Lanjut cerita</button>
-                <div class="page-number">04</div>
+                <button class="btn-next" onclick="goToPage(5)">Lanjut cerita ➜</button>
+                <div class="page-number">05</div>
             </div>
 
-            <!-- ===== HALAMAN 5 — BABAK 2 ===== -->
-            <div class="page" id="page5">
+            <!-- ==========================================================
+            PAGE 6 — BABAK 2
+            ========================================================== -->
+            <div class="page" id="page6">
                 <div class="babak-title">✨ BABAK 2 / 3</div>
                 <div class="babak-content">
                     <strong>senyum kecil yang menang besar</strong><br /><br />
@@ -632,42 +927,53 @@
                     ngak banyak gaya, ngak perlu usaha keras,<br />
                     tapi tetap bikin aku kalah.
                 </div>
-                <button class="btn-next" onclick="goToPage(5)">Lanjut cerita</button>
-                <div class="page-number">05</div>
+                <button class="btn-next" onclick="goToPage(6)">Lanjut cerita ➜</button>
+                <div class="page-number">06</div>
             </div>
 
-            <!-- ===== HALAMAN 6 — BABAK 3 ===== -->
-            <div class="page" id="page6">
+            <!-- ==========================================================
+            PAGE 7 — BABAK 3
+            ========================================================== -->
+            <div class="page" id="page7">
                 <div class="babak-title">☄️ BABAK 3 / 3</div>
                 <div class="babak-content">
                     <strong>meteor pun kalah terang</strong><br /><br />
                     andai batu meteor mendekati matahari buat adu terang,<br />
                     aku tetap pilih kamu pemenangnya, sayangg.
                 </div>
-                <button class="btn-next" onclick="goToPage(6)">Lihat penutup</button>
-                <div class="page-number">06</div>
+                <button class="btn-next" onclick="goToPage(7)">Lihat penutup ➜</button>
+                <div class="page-number">07</div>
             </div>
 
-            <!-- ===== HALAMAN 7 — STANDING OVATION ===== -->
-            <div class="page" id="page7">
+            <!-- ==========================================================
+            PAGE 8 — STANDING OVATION
+            ========================================================== -->
+            <div class="page" id="page8">
                 <div class="ovation-title">👏 STANDING OVATION</div>
                 <div style="font-size:2.5rem; margin:6px 0;">Mwehehehe</div>
                 <div class="ovation-text">
                     sayangg, mungkin buat kamu ini cuma foto biasa.<br /><br />
                     tapi buat aku, ini momen yang terlalu manis<br />
-                    buat lewat begitu aja.
+                    buat lewat begitu aja.<br /><br />
+                    rambut kamu jatuhnya pas, senyum kamu hangatnya pas,<br />
+                    dan semuanya terasa kayak foto yang memang minta diabadikan.<br /><br />
+                    jadi iya, kalau boleh aku simpan di figura<br />
+                    bukan karena fotonya dibuat sempurna,<br />
+                    tapi karena kamu di foto ini cantiknya terlalu.
                 </div>
                 <div class="ovation-sign">— Raka, buat Nora</div>
-                <button class="btn-next" onclick="goToPage(7)">Lihat bouquet</button>
-                <div class="page-number">07</div>
+                <button class="btn-next" onclick="goToPage(8)">Lihat bouquet ➜</button>
+                <div class="page-number">08</div>
             </div>
 
-            <!-- ===== HALAMAN 8 — APRESIASI + BUKET ===== -->
-            <div class="page" id="page8">
+            <!-- ==========================================================
+            PAGE 9 — APRESIASI + BUKET
+            ========================================================== -->
+            <div class="page" id="page9">
                 <div class="apresiasi-title">🌸 APRESIASI</div>
 
-                <!-- BUKET BUNGA CANTIK -->
-                <div class="buket">
+                <!-- BUKET BUNGA -->
+                <div class="buket-container" id="buketContainer">
                     <div class="batang-group">
                         <div class="batang"></div>
                         <div class="batang"></div>
@@ -689,44 +995,129 @@
                     Terima kasih karena tetap ada.
                 </div>
                 <div class="gift-note">
-                    Pink rose · Gratitude<br />
-                    Blue hydrangea · Gratitude
+                    <strong>Pink rose</strong> · Gratitude &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Blue hydrangea</strong> · Gratitude
                 </div>
-                <div class="gift-date">*giftie dates*</div>
+                <div class="gift-date">* giftie dates *</div>
 
-                <button class="btn-next" onclick="goToPage(0)" style="background: #6cb4ee;">Back to edit</button>
-                <div class="page-number">08</div>
+                <button class="btn-next" onclick="goToPage(0)" style="background: #6cb4ee;">← Back to edit</button>
+                <div class="page-number">09</div>
             </div>
 
         </div>
     </div>
 
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
     <script>
-        // ===== BUNGA JATUH =====
+        // ============================================================
+        // 1. BUNGA JATUH
+        // ============================================================
         const items = ['🌸', '🌹', '💗', '🌺', '💖', '🌷', '🌼', '🌻', '💐'];
         const container = document.getElementById('petalsContainer');
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 35; i++) {
             const el = document.createElement('div');
             el.className = 'falling-item';
             el.textContent = items[Math.floor(Math.random() * items.length)];
             el.style.left = Math.random() * 100 + '%';
-            el.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
-            el.style.animationDuration = (8 + Math.random() * 16) + 's';
-            el.style.animationDelay = (Math.random() * 18) + 's';
+            el.style.fontSize = (1.2 + Math.random() * 2.0) + 'rem';
+            el.style.animationDuration = (8 + Math.random() * 18) + 's';
+            el.style.animationDelay = (Math.random() * 20) + 's';
             container.appendChild(el);
         }
 
-        // ===== NAVIGASI =====
+        // ============================================================
+        // 2. ANIMASI LOVE (PAGE 2)
+        // ============================================================
+        function createLoveAnimation() {
+            const canvas = document.getElementById('loveCanvas');
+            if (!canvas) return;
+
+            const words = ['I', 'love', 'you', 'I', 'love', 'you', 'I', 'love', 'you',
+                'I', 'love', 'you', 'I', 'love', 'you', 'I', 'love', 'you',
+                'I', 'love', 'you', 'I', 'love', 'you', 'I', 'love', 'you'
+            ];
+
+            // Posisi untuk membentuk hati
+            const heartPositions = [];
+            for (let t = 0; t < 2 * Math.PI; t += 0.12) {
+                const x = 16 * Math.pow(Math.sin(t), 3);
+                const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+                heartPositions.push({ x: x * 12 + 50, y: -y * 12 + 50 });
+            }
+
+            // Acak posisi dari 27 kata
+            for (let i = 0; i < words.length && i < heartPositions.length; i++) {
+                const el = document.createElement('div');
+                el.className = 'love-particle';
+                el.textContent = words[i];
+                const pos = heartPositions[i % heartPositions.length];
+                el.style.setProperty('--tx', pos.x + '%');
+                el.style.setProperty('--ty', pos.y + '%');
+                el.style.left = (30 + Math.random() * 40) + '%';
+                el.style.top = (20 + Math.random() * 40) + '%';
+                el.style.animationDelay = (i * 0.12) + 's';
+                el.style.fontSize = (0.8 + Math.random() * 0.6) + 'rem';
+                canvas.appendChild(el);
+            }
+        }
+
+        // ============================================================
+        // 3. TIRAI (PAGE 3)
+        // ============================================================
+        let tiraiOpen = false;
+
+        document.getElementById('btnTirai')?.addEventListener('click', function() {
+            const container = document.getElementById('tiraiContainer');
+            if (!tiraiOpen) {
+                container.classList.add('open');
+                this.textContent = '✦ Tirai terbuka ✦';
+                tiraiOpen = true;
+                // Auto lanjut setelah tirai terbuka
+                setTimeout(() => {
+                    if (currentPage === 2) {
+                        goToPage(3);
+                    }
+                }, 1500);
+            }
+        });
+
+        // ============================================================
+        // 4. NAVIGASI
+        // ============================================================
         const wrapper = document.getElementById('pagesWrapper');
         let currentPage = 0;
-        const totalPages = 8;
+        const totalPages = 9;
 
         function goToPage(index) {
             if (index < 0 || index >= totalPages) return;
             currentPage = index;
-            wrapper.style.transform = `translateX(-${index * 12.5}%)`;
+            wrapper.style.transform = `translateX(-${index * 9.09}%)`;
         }
 
+        // Klik nama Nora di page 2
+        document.getElementById('noraName')?.addEventListener('click', function() {
+            if (currentPage === 1) {
+                goToPage(2);
+            }
+        });
+
+        // ============================================================
+        // 5. AUTO LOADING PAGE 1 → PAGE 2
+        // ============================================================
+        setTimeout(() => {
+            if (currentPage === 0) {
+                goToPage(1);
+                // Jalankan animasi love setelah pindah ke page 2
+                setTimeout(() => {
+                    createLoveAnimation();
+                }, 300);
+            }
+        }, 4000);
+
+        // ============================================================
+        // 6. KEYBOARD NAVIGASI
+        // ============================================================
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' && currentPage < totalPages - 1) {
                 goToPage(currentPage + 1);
@@ -735,6 +1126,9 @@
             }
         });
 
+        // ============================================================
+        // 7. SWIPE NAVIGASI
+        // ============================================================
         let startX = 0;
         const book = document.getElementById('bookContainer');
 
@@ -754,7 +1148,20 @@
             }
         }, { passive: true });
 
-        console.log('🌹 Website final — sesuai foto!');
+        // ============================================================
+        // 8. KLIK BUKET → ZOOM EFFECT (PAGE 9)
+        // ============================================================
+        document.getElementById('buketContainer')?.addEventListener('click', function() {
+            this.style.transition = 'transform 0.3s';
+            this.style.transform = 'scale(1.15)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 400);
+        });
+
+        console.log('🌹 Website untuk Nora — siap digunakan!');
+        console.log('📖 Total halaman: ' + totalPages);
+        console.log('💐 Selamat menikmati, Tuanku!');
     </script>
 </body>
 </html>
