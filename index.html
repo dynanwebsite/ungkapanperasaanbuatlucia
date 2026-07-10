@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🌹 Untuk Nora — Raka</title>
+    <title>💐 Untuk Nora — Raka</title>
     <style>
         * {
             margin: 0;
@@ -43,7 +43,7 @@
         .orb1 {
             width: 400px;
             height: 400px;
-            background: rgba(255, 77, 122, 0.12);
+            background: rgba(255, 77, 122, 0.08);
             top: -100px;
             left: -100px;
             animation: orbFloat 12s ease-in-out infinite alternate;
@@ -51,7 +51,7 @@
         .orb2 {
             width: 350px;
             height: 350px;
-            background: rgba(80, 150, 255, 0.08);
+            background: rgba(80, 150, 255, 0.06);
             bottom: -80px;
             right: -80px;
             animation: orbFloat 15s ease-in-out infinite alternate-reverse;
@@ -79,16 +79,16 @@
             position: absolute;
             font-size: 1.4rem;
             animation: fallDown linear infinite;
-            opacity: 0.25;
+            opacity: 0.15;
             user-select: none;
         }
         @keyframes fallDown {
             0% {
                 transform: translateY(-10vh) rotate(0deg) scale(0.8);
-                opacity: 0.1;
+                opacity: 0.05;
             }
             50% {
-                opacity: 0.5;
+                opacity: 0.25;
             }
             100% {
                 transform: translateY(110vh) rotate(720deg) scale(1.2);
@@ -105,18 +105,18 @@
             max-height: 800px;
             overflow: hidden;
             border-radius: 24px;
-            background: rgba(20, 12, 22, 0.5);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 60px rgba(255, 77, 122, 0.05);
+            background: rgba(20, 12, 22, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 60px rgba(255, 77, 122, 0.04);
         }
 
         .pages-wrapper {
             display: flex;
             height: 100%;
             width: 900%;
-            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: transform;
         }
 
@@ -136,7 +136,6 @@
             display: none;
         }
 
-        /* ── TOMBOL ── */
         .btn-next {
             background: linear-gradient(135deg, #ff6b8a, #ff9a76);
             border: none;
@@ -149,28 +148,39 @@
             transition: 0.3s;
             margin-top: 18px;
             letter-spacing: 1px;
+            z-index: 5;
+            position: relative;
         }
         .btn-next:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 107, 138, 0.4);
+            box-shadow: 0 0 30px rgba(255, 107, 138, 0.3);
+        }
+        .btn-next:active {
+            transform: scale(0.95);
         }
 
-        /* ── PAGE 1 ── */
-        #page1 .qr-box {
-            font-size: 4rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px 30px;
-            border-radius: 20px;
-            border: 2px dashed rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
+        .page-number {
+            position: absolute;
+            bottom: 16px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.06);
+            letter-spacing: 3px;
+        }
+
+        /* ===== PAGE 1 — BERSIH (tanpa POV & QR) ===== */
+        #page1 .loading-text {
+            font-size: 1.2rem;
+            color: #d4b8c8;
+            margin-bottom: 10px;
+            font-style: italic;
         }
         #page1 .loading-bar {
             width: 80%;
             height: 6px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 12px;
+            margin-top: 10px;
         }
         #page1 .loading-bar .fill {
             height: 100%;
@@ -187,28 +197,84 @@
                 width: 100%;
             }
         }
-
-        /* ── PAGE 2 ── */
-        #page2 .flower-bloom {
-            font-size: 8rem;
-            animation: bloomPulse 2.5s ease-in-out infinite;
+        #page1 .loading-label {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: #6a5a6a;
         }
-        @keyframes bloomPulse {
-            0% {
-                transform: scale(0.6) rotate(-10deg);
-                opacity: 0.3;
+
+        /* ===== PAGE 2 — BUNGA MENUTUP + MEMBUKA ===== */
+        #page2 {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .flower-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(13, 8, 18, 0.85);
+            z-index: 3;
+            animation: flowerClose 3s ease-in-out forwards;
+            pointer-events: none;
+        }
+
+        .flower-layer .big-flower {
+            font-size: 10rem;
+            animation: flowerPulse 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 60px rgba(70, 150, 255, 0.2));
+        }
+
+        @keyframes flowerPulse {
+            0%,
+            100% {
+                transform: scale(0.8) rotate(-5deg);
+                opacity: 0.6;
             }
             50% {
                 transform: scale(1.2) rotate(5deg);
                 opacity: 1;
             }
+        }
+
+        @keyframes flowerClose {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            25% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            75% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
             100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 0.9;
+                opacity: 0;
+                transform: scale(1.5);
+                visibility: hidden;
             }
         }
 
-        /* ── PAGE 3 ── */
+        #page2 .label-bloom {
+            font-size: 1.4rem;
+            color: #6cb4ee;
+            z-index: 2;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        /* ===== PAGE 3 — NAMA LUCIA ===== */
         #page3 .flower-name {
             font-size: 4.5rem;
             font-weight: 700;
@@ -234,8 +300,14 @@
                 transform: scale(1.04);
             }
         }
+        #page3 .sub-name {
+            font-size: 1rem;
+            color: #b8a0b0;
+            margin-top: 12px;
+            letter-spacing: 4px;
+        }
 
-        /* ── PAGE 4 ── */
+        /* ===== PAGE 4 — PERTUNJUKAN SPESIAL ===== */
         #page4 .title-special {
             font-size: 2.2rem;
             font-weight: 700;
@@ -247,8 +319,15 @@
             color: #d4b8c8;
             margin: 12px 0;
         }
+        #page4 .tap-hint {
+            font-size: 0.9rem;
+            color: #8a7a8a;
+            margin-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 14px;
+        }
 
-        /* ── BABAK ── */
+        /* ===== PAGE 5,6,7 — BABAK ===== */
         .babak-title {
             font-size: 1.6rem;
             color: #ff7a9e;
@@ -261,13 +340,23 @@
             color: #d4c6cf;
             max-width: 320px;
         }
+        .babak-content strong {
+            color: #ff9a76;
+        }
 
-        /* ── PAGE 8 ── */
+        /* ===== PAGE 8 — STANDING OVATION ===== */
         #page8 .ovation-title {
             font-size: 2.6rem;
             font-weight: 700;
             color: #ffd700;
             text-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+        }
+        #page8 .ovation-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #d4c6cf;
+            max-width: 320px;
+            margin: 12px 0;
         }
         #page8 .ovation-sign {
             font-size: 0.9rem;
@@ -276,7 +365,7 @@
             font-style: italic;
         }
 
-        /* ── PAGE 9 ── */
+        /* ===== PAGE 9 — APRESIASI + BUKET ===== */
         #page9 .apresiasi-title {
             font-size: 2.2rem;
             color: #6cb4ee;
@@ -287,17 +376,111 @@
             color: #d4c6cf;
             margin: 10px 0;
         }
-        #page9 .flower-gift {
-            font-size: 3rem;
-            margin: 10px 0;
+
+        .buket {
+            position: relative;
+            width: 240px;
+            height: 220px;
+            margin: 10px auto;
         }
 
-        .page-number {
+        .buket .batang-group {
             position: absolute;
-            bottom: 16px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.08);
-            letter-spacing: 3px;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            z-index: 0;
+        }
+
+        .buket .batang {
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to top, #2d7a3a, #4caf50);
+            border-radius: 4px;
+            transform-origin: bottom;
+        }
+
+        .buket .batang:nth-child(1) {
+            transform: rotate(-15deg);
+            height: 90px;
+        }
+        .buket .batang:nth-child(2) {
+            transform: rotate(-6deg);
+            height: 105px;
+        }
+        .buket .batang:nth-child(3) {
+            transform: rotate(0deg);
+            height: 115px;
+        }
+        .buket .batang:nth-child(4) {
+            transform: rotate(6deg);
+            height: 105px;
+        }
+        .buket .batang:nth-child(5) {
+            transform: rotate(15deg);
+            height: 90px;
+        }
+
+        .buket .bunga {
+            position: absolute;
+            font-size: 2.4rem;
+            animation: ayunBunga 3s ease-in-out infinite alternate;
+            z-index: 1;
+            filter: drop-shadow(0 0 12px rgba(255, 200, 200, 0.1));
+        }
+
+        .buket .bunga:nth-child(6) {
+            bottom: 75px;
+            left: 10px;
+            font-size: 2.6rem;
+            animation-delay: 0.1s;
+        }
+        .buket .bunga:nth-child(7) {
+            bottom: 90px;
+            left: 50px;
+            font-size: 3.0rem;
+            animation-delay: 0.4s;
+        }
+        .buket .bunga:nth-child(8) {
+            bottom: 100px;
+            left: 95px;
+            font-size: 3.4rem;
+            animation-delay: 0.7s;
+        }
+        .buket .bunga:nth-child(9) {
+            bottom: 90px;
+            right: 50px;
+            font-size: 3.0rem;
+            animation-delay: 0.4s;
+        }
+        .buket .bunga:nth-child(10) {
+            bottom: 75px;
+            right: 10px;
+            font-size: 2.6rem;
+            animation-delay: 0.1s;
+        }
+        .buket .bunga:nth-child(11) {
+            bottom: 60px;
+            left: 30px;
+            font-size: 2.0rem;
+            animation-delay: 0.6s;
+        }
+        .buket .bunga:nth-child(12) {
+            bottom: 60px;
+            right: 30px;
+            font-size: 2.0rem;
+            animation-delay: 0.6s;
+        }
+
+        @keyframes ayunBunga {
+            0% {
+                transform: rotate(-5deg) scale(1);
+            }
+            100% {
+                transform: rotate(5deg) scale(1.05);
+            }
         }
 
         @media (max-width: 480px) {
@@ -310,9 +493,6 @@
                 font-size: 3.2rem;
                 letter-spacing: 4px;
             }
-            #page1 .qr-box {
-                font-size: 3rem;
-            }
             #page4 .title-special {
                 font-size: 1.8rem;
             }
@@ -321,6 +501,19 @@
             }
             .babak-content {
                 font-size: 0.95rem;
+            }
+            .buket {
+                width: 200px;
+                height: 180px;
+            }
+            .buket .bunga {
+                font-size: 2.0rem;
+            }
+            .buket .bunga:nth-child(8) {
+                font-size: 2.8rem;
+            }
+            .flower-layer .big-flower {
+                font-size: 7rem;
             }
         }
     </style>
@@ -336,26 +529,22 @@
     <div class="book-container" id="bookContainer">
         <div class="pages-wrapper" id="pagesWrapper">
 
-            <!-- ===== HALAMAN 1 ===== -->
+            <!-- ===== HALAMAN 1 — BERSIH ===== -->
             <div class="page" id="page1">
-                <div class="qr-box">📱</div>
-                <div style="font-size:1.2rem; font-weight:300; color:#d4b8c8;">
-                    pov: kirim pap bukannya dipuji<br />malah dikasi kode QR 😂😂😂
-                </div>
-                <div style="margin-top:16px; font-size:0.9rem; color:#a08b9a;">
-                    Sebentar, bunganya sedang mekar...
-                </div>
+                <div class="loading-text">✨ Sebentar, bunganya sedang mekar...</div>
                 <div class="loading-bar"><div class="fill"></div></div>
-                <div style="margin-top:6px; font-size:0.8rem; color:#6a5a6a;">100%</div>
+                <div class="loading-label">100%</div>
                 <button class="btn-next" onclick="goToPage(1)">➜ Buka</button>
                 <div class="page-number">01</div>
             </div>
 
             <!-- ===== HALAMAN 2 ===== -->
             <div class="page" id="page2">
-                <div class="flower-bloom">🌼</div>
-                <div style="font-size:1.2rem; color:#6cb4ee; margin-top:12px;">Bunga biru mekar...</div>
-                <button class="btn-next" onclick="goToPage(2)">➜ Lihat nama</button>
+                <div class="flower-layer">
+                    <div class="big-flower">🌼</div>
+                </div>
+                <div class="label-bloom">Bunga biru mekar...</div>
+                <button class="btn-next" onclick="goToPage(2)" style="z-index:4;">➜ Lihat nama</button>
                 <div class="page-number">02</div>
             </div>
 
@@ -364,6 +553,7 @@
                 <div class="flower-name" onclick="goToPage(3)">LUCIA</div>
                 <div class="sub-name">✦ dari bunga untukmu ✦</div>
                 <div style="font-size:0.8rem; color:#6a5a6a; margin-top:10px;">(klik namanya untuk lanjut)</div>
+                <button class="btn-next" onclick="goToPage(3)">➜ Lanjut</button>
                 <div class="page-number">03</div>
             </div>
 
@@ -372,9 +562,7 @@
                 <div class="title-special">🎭 PERTUNJUKAN SPESIAL</div>
                 <div class="sub-special">Khusus buat sayangku <strong style="color:#ff7a9e;">Nora</strong></div>
                 <div style="font-size:0.95rem; color:#b8a0b0; margin:8px 0;">untuk Nora</div>
-                <div style="font-size:0.9rem; color:#8a7a8a; margin-top:12px; border-top:1px solid rgba(255,255,255,0.05); padding-top:14px;">
-                    Buka tirai<br />tap tainya buat email cerita
-                </div>
+                <div class="tap-hint">Buka tirai<br />tap tainya buat email cerita</div>
                 <button class="btn-next" onclick="goToPage(4)">➜ Buka tirai</button>
                 <div class="page-number">04</div>
             </div>
@@ -419,7 +607,7 @@
             <div class="page" id="page8">
                 <div class="ovation-title">👏 STANDING OVATION</div>
                 <div style="font-size:2rem; margin:6px 0;">Mwehehehe</div>
-                <div class="babak-content" style="font-size:0.95rem;">
+                <div class="ovation-text">
                     sayangg, mungkin buat kamu ini cuma foto biasa.<br /><br />
                     tapi buat aku, ini momen yang terlalu manis buat lewat begitu aja.
                 </div>
@@ -431,16 +619,34 @@
             <!-- ===== HALAMAN 9 ===== -->
             <div class="page" id="page9">
                 <div class="apresiasi-title">🌸 APRESIASI</div>
-                <div class="flower-gift">🌹💐🌺</div>
+
+                <div class="buket">
+                    <div class="batang-group">
+                        <div class="batang"></div>
+                        <div class="batang"></div>
+                        <div class="batang"></div>
+                        <div class="batang"></div>
+                        <div class="batang"></div>
+                    </div>
+                    <div class="bunga" style="bottom:75px; left:10px; font-size:2.6rem;">🌹</div>
+                    <div class="bunga" style="bottom:90px; left:50px; font-size:3.0rem;">💐</div>
+                    <div class="bunga" style="bottom:100px; left:95px; font-size:3.4rem;">🌺</div>
+                    <div class="bunga" style="bottom:90px; right:50px; font-size:3.0rem;">🌷</div>
+                    <div class="bunga" style="bottom:75px; right:10px; font-size:2.6rem;">🌻</div>
+                    <div class="bunga" style="bottom:60px; left:30px; font-size:2.0rem;">🌸</div>
+                    <div class="bunga" style="bottom:60px; right:30px; font-size:2.0rem;">🌼</div>
+                </div>
+
                 <div class="apresiasi-sub">
                     <strong>Thank You for Staying until Now</strong><br />
                     Terima kasih karena tetap ada.
                 </div>
-                <div style="font-size:0.85rem; color:#8a7a8a; margin:6px 0;">
+                <div style="font-size:0.85rem; color:#8a7a8a; margin:4px 0;">
                     Pink rose · Gratitude<br />
                     Blue hydrangea · Gratitude
                 </div>
-                <div style="font-size:0.8rem; color:#6a5a6a; margin-top:8px;">*giftie dates*</div>
+                <div style="font-size:0.7rem; color:#6a5a6a; margin-top:4px;">*giftie dates*</div>
+
                 <button class="btn-next" onclick="goToPage(0)" style="background: #6cb4ee;">Back to edit</button>
                 <div class="page-number">09</div>
             </div>
@@ -474,7 +680,12 @@
             wrapper.style.transform = `translateX(-${index * 11.11}%)`;
         }
 
-        // Keyboard
+        document.querySelector('.flower-name')?.addEventListener('click', function() {
+            if (currentPage === 2) {
+                goToPage(3);
+            }
+        });
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' && currentPage < totalPages - 1) {
                 goToPage(currentPage + 1);
@@ -483,7 +694,6 @@
             }
         });
 
-        // Swipe
         let startX = 0;
         const book = document.getElementById('bookContainer');
 
@@ -503,7 +713,7 @@
             }
         }, { passive: true });
 
-        console.log('🌹 Buku digital untuk Nora siap!');
+        console.log('🌹 Website final — halaman 1 bersih!');
     </script>
 </body>
 </html>
