@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>💐 Untuk Lucia Ku Tersayang</title>
+    <title>🌹 Untuk Nora — Raka</title>
     <style>
         * {
             margin: 0;
@@ -14,26 +14,25 @@
 
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
+            background: #0d0812;
             min-height: 100vh;
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #0d0812;
+            overflow: hidden;
+            color: #f5e6d3;
         }
 
-        /* ── BACKGROUND ── */
         .bg-layer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: radial-gradient(ellipse at center, #1a0e1e 0%, #0d0812 100%);
             z-index: 0;
-            background: linear-gradient(145deg, #1a0e1e 0%, #2d1a2e 30%, #1f1028 60%, #0d0812 100%);
         }
 
-        /* ── ORB ── */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -42,31 +41,21 @@
             z-index: 0;
         }
         .orb1 {
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 77, 122, 0.15);
-            top: -120px;
-            left: -120px;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 77, 122, 0.12);
+            top: -100px;
+            left: -100px;
             animation: orbFloat 12s ease-in-out infinite alternate;
         }
         .orb2 {
-            width: 450px;
-            height: 450px;
-            background: rgba(255, 150, 80, 0.10);
-            bottom: -100px;
-            right: -100px;
-            animation: orbFloat 15s ease-in-out infinite alternate-reverse;
-        }
-        .orb3 {
             width: 350px;
             height: 350px;
-            background: rgba(200, 100, 255, 0.08);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: orbFloat 18s ease-in-out infinite alternate;
+            background: rgba(80, 150, 255, 0.08);
+            bottom: -80px;
+            right: -80px;
+            animation: orbFloat 15s ease-in-out infinite alternate-reverse;
         }
-
         @keyframes orbFloat {
             0% {
                 transform: translate(0, 0) scale(1);
@@ -76,7 +65,6 @@
             }
         }
 
-        /* ── BUNGA & HATI JATUH ── */
         .petals-container {
             position: fixed;
             top: 0;
@@ -87,97 +75,55 @@
             z-index: 0;
             overflow: hidden;
         }
-
         .falling-item {
             position: absolute;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             animation: fallDown linear infinite;
-            opacity: 0.5;
+            opacity: 0.25;
             user-select: none;
         }
-
         @keyframes fallDown {
             0% {
                 transform: translateY(-10vh) rotate(0deg) scale(0.8);
-                opacity: 0.3;
+                opacity: 0.1;
             }
-            20% {
-                opacity: 0.7;
-            }
-            80% {
-                opacity: 0.7;
+            50% {
+                opacity: 0.5;
             }
             100% {
                 transform: translateY(110vh) rotate(720deg) scale(1.2);
-                opacity: 0.1;
+                opacity: 0;
             }
         }
 
-        /* ── SPARKLE ── */
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 200, 200, 0.5);
-            animation: sparkleAnim 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes sparkleAnim {
-            0% {
-                opacity: 0.1;
-                transform: scale(0.5);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1.5);
-            }
-        }
-
-        /* ── BUKU CONTAINER (DIPERBESAR) ── */
         .book-container {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 560px;
+            max-width: 480px;
             height: 100vh;
-            max-height: 860px;
+            max-height: 800px;
             overflow: hidden;
-            touch-action: none;
-            cursor: grab;
-            border-radius: 28px;
-            box-shadow: 0 0 100px rgba(255, 77, 122, 0.10), inset 0 0 100px rgba(255, 77, 122, 0.04);
-            background: rgba(20, 12, 22, 0.45);
+            border-radius: 24px;
+            background: rgba(20, 12, 22, 0.5);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 77, 122, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 60px rgba(255, 77, 122, 0.05);
         }
 
-        .book-container:active {
-            cursor: grabbing;
-        }
-
-        /* ── PAGES WRAPPER ── */
         .pages-wrapper {
             display: flex;
             height: 100%;
-            width: 200%;
-            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 900%;
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: transform;
         }
 
-        .pages-wrapper.swiped {
-            transform: translateX(-50%);
-        }
-
-        /* ── PAGE ── */
         .page {
-            width: 50%;
+            width: 11.11%;
             height: 100%;
-            padding: 55px 35px 45px;
+            padding: 30px 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -186,420 +132,378 @@
             overflow-y: auto;
             position: relative;
         }
-
         .page::-webkit-scrollbar {
             display: none;
         }
-        .page {
-            scrollbar-width: none;
+
+        /* ── TOMBOL ── */
+        .btn-next {
+            background: linear-gradient(135deg, #ff6b8a, #ff9a76);
+            border: none;
+            color: #0d0812;
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 18px;
+            letter-spacing: 1px;
+        }
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 107, 138, 0.4);
         }
 
         /* ── PAGE 1 ── */
-        #page1 {
-            background: transparent;
+        #page1 .qr-box {
+            font-size: 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
         }
-
-        #page1 .emoji-top {
-            font-size: 3.2rem;
-            margin-bottom: 10px;
-            display: block;
-            animation: pulseEmoji 2.5s ease-in-out infinite;
+        #page1 .loading-bar {
+            width: 80%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 12px;
         }
-
-        @keyframes pulseEmoji {
-            0%,
+        #page1 .loading-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff6b8a, #ff9a76);
+            border-radius: 10px;
+            animation: loadFill 3s ease-in-out forwards;
+        }
+        @keyframes loadFill {
+            0% {
+                width: 0%;
+            }
             100% {
-                transform: scale(1) rotate(-2deg);
+                width: 100%;
+            }
+        }
+
+        /* ── PAGE 2 ── */
+        #page2 .flower-bloom {
+            font-size: 8rem;
+            animation: bloomPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes bloomPulse {
+            0% {
+                transform: scale(0.6) rotate(-10deg);
+                opacity: 0.3;
             }
             50% {
-                transform: scale(1.12) rotate(2deg);
-            }
-        }
-
-        #page1 .main-title {
-            font-size: 3.0rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff6b8a, #ff9a76, #ff6b8a);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
-            letter-spacing: 2px;
-            line-height: 1.2;
-            margin-bottom: 14px;
-            text-shadow: 0 0 60px rgba(255, 77, 122, 0.15);
-        }
-
-        @keyframes gradientShift {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        #page1 .sub-title {
-            font-size: 1.15rem;
-            color: #d4b8c8;
-            letter-spacing: 3px;
-            font-weight: 300;
-            margin-bottom: 26px;
-            line-height: 1.7;
-            max-width: 360px;
-            text-shadow: 0 0 30px rgba(255, 77, 122, 0.05);
-        }
-
-        #page1 .sub-title strong {
-            color: #ff7a9e;
-            font-weight: 400;
-        }
-
-        #page1 .description {
-            font-size: 1.0rem;
-            color: #b8a0b0;
-            line-height: 1.9;
-            max-width: 360px;
-            margin-bottom: 28px;
-            font-style: italic;
-            padding: 18px 24px;
-            background: rgba(255, 77, 122, 0.05);
-            border-radius: 18px;
-            border-left: 3px solid rgba(255, 77, 122, 0.25);
-        }
-
-        #page1 .description strong {
-            color: #ff8aac;
-            font-style: normal;
-        }
-
-        #page1 .arrow-hint {
-            font-size: 3.2rem;
-            animation: bounceArrow 2s ease-in-out infinite;
-            color: rgba(255, 77, 122, 0.5);
-            margin-top: 8px;
-            letter-spacing: 8px;
-        }
-
-        @keyframes bounceArrow {
-            0%,
-            100% {
-                transform: translateX(0);
-                opacity: 0.4;
-            }
-            50% {
-                transform: translateX(14px);
+                transform: scale(1.2) rotate(5deg);
                 opacity: 1;
             }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.9;
+            }
         }
 
-        #page1 .page-number {
-            position: absolute;
-            bottom: 30px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.10);
-            letter-spacing: 5px;
-            font-weight: 300;
-        }
-
-        /* ── PAGE 2 (Preview) ── */
-        #page2 {
-            background: transparent;
-            justify-content: center;
-            gap: 18px;
-        }
-
-        #page2 .preview-text {
-            font-size: 1.8rem;
-            color: #d4b8c8;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        #page2 .preview-text span {
-            color: #ff6b8a;
-        }
-
-        #page2 .preview-heart {
+        /* ── PAGE 3 ── */
+        #page3 .flower-name {
             font-size: 4.5rem;
-            animation: pulseHeart 1.8s ease-in-out infinite;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b8a, #ff9a76, #6cb4ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            animation: nameGlow 2s ease-in-out infinite;
+            padding: 20px 30px;
+            border-radius: 30px;
+            transition: 0.3s;
+            letter-spacing: 8px;
         }
-
-        @keyframes pulseHeart {
+        #page3 .flower-name:hover {
+            transform: scale(1.08);
+        }
+        @keyframes nameGlow {
             0%,
             100% {
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.2);
+                transform: scale(1.04);
             }
         }
 
-        /* ── RESPONSIVE ── */
+        /* ── PAGE 4 ── */
+        #page4 .title-special {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ff7a9e;
+            letter-spacing: 2px;
+        }
+        #page4 .sub-special {
+            font-size: 1.2rem;
+            color: #d4b8c8;
+            margin: 12px 0;
+        }
+
+        /* ── BABAK ── */
+        .babak-title {
+            font-size: 1.6rem;
+            color: #ff7a9e;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+        .babak-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d4c6cf;
+            max-width: 320px;
+        }
+
+        /* ── PAGE 8 ── */
+        #page8 .ovation-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+        }
+        #page8 .ovation-sign {
+            font-size: 0.9rem;
+            color: #b8a0b0;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* ── PAGE 9 ── */
+        #page9 .apresiasi-title {
+            font-size: 2.2rem;
+            color: #6cb4ee;
+            letter-spacing: 3px;
+        }
+        #page9 .apresiasi-sub {
+            font-size: 1rem;
+            color: #d4c6cf;
+            margin: 10px 0;
+        }
+        #page9 .flower-gift {
+            font-size: 3rem;
+            margin: 10px 0;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 16px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.08);
+            letter-spacing: 3px;
+        }
+
         @media (max-width: 480px) {
             .book-container {
                 max-height: 100vh;
                 border-radius: 0;
-                backdrop-filter: blur(3px);
                 max-width: 100%;
             }
-            #page1 .main-title {
-                font-size: 2.3rem;
+            #page3 .flower-name {
+                font-size: 3.2rem;
+                letter-spacing: 4px;
             }
-            #page1 .sub-title {
+            #page1 .qr-box {
+                font-size: 3rem;
+            }
+            #page4 .title-special {
+                font-size: 1.8rem;
+            }
+            .babak-title {
+                font-size: 1.3rem;
+            }
+            .babak-content {
                 font-size: 0.95rem;
-            }
-            #page1 .description {
-                font-size: 0.88rem;
-                padding: 16px 18px;
-            }
-            .page {
-                padding: 30px 20px 30px;
-            }
-            #page1 .emoji-top {
-                font-size: 2.6rem;
-            }
-            #page1 .arrow-hint {
-                font-size: 2.6rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .book-container {
-                border-radius: 36px;
-                max-width: 620px;
-                max-height: 900px;
-            }
-            #page1 .main-title {
-                font-size: 3.6rem;
-            }
-            #page1 .emoji-top {
-                font-size: 4rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ====== BACKGROUND ====== -->
     <div class="bg-layer"></div>
-
-    <!-- ====== ORB ====== -->
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
 
-    <!-- ====== BUNGA & HATI JATUH ====== -->
     <div class="petals-container" id="petalsContainer"></div>
 
-    <!-- ====== SPARKLE ====== -->
-    <div id="sparkleContainer"></div>
-
-    <!-- ====== BUKU ====== -->
     <div class="book-container" id="bookContainer">
         <div class="pages-wrapper" id="pagesWrapper">
 
-            <!-- HALAMAN 1 -->
+            <!-- ===== HALAMAN 1 ===== -->
             <div class="page" id="page1">
-                <span class="emoji-top">💐</span>
-                <div class="main-title">Untuk Lucia<br />Ku Tersayang</div>
-                <div class="sub-title">
-                    ✦ <strong>INI HADIAH KECIL</strong> ✦<br />
-                    YANG GA SEBERAPA DAN<br />
-                    SEMOGA KAMU MENYUKAI NYA
+                <div class="qr-box">📱</div>
+                <div style="font-size:1.2rem; font-weight:300; color:#d4b8c8;">
+                    pov: kirim pap bukannya dipuji<br />malah dikasi kode QR 😂😂😂
                 </div>
-                <div class="description">
-                    “Ini bisa menjadi beberapa halaman,<br />
-                    dan ini halaman ke 1.<br />
-                    Cara beralih halaman kedua<br />
-                    tinggal <strong>geser dari kanan ke kiri</strong>,<br />
-                    kek melanjutkan buku<br />
-                    dari halaman selanjutnya.”
+                <div style="margin-top:16px; font-size:0.9rem; color:#a08b9a;">
+                    Sebentar, bunganya sedang mekar...
                 </div>
-                <div class="arrow-hint">➜ ➜ ➜</div>
-                <div class="page-number">— 01 —</div>
+                <div class="loading-bar"><div class="fill"></div></div>
+                <div style="margin-top:6px; font-size:0.8rem; color:#6a5a6a;">100%</div>
+                <button class="btn-next" onclick="goToPage(1)">➜ Buka</button>
+                <div class="page-number">01</div>
             </div>
 
-            <!-- HALAMAN 2 (Preview) -->
+            <!-- ===== HALAMAN 2 ===== -->
             <div class="page" id="page2">
-                <div class="preview-heart">💖</div>
-                <div class="preview-text">
-                    Halaman <span>2</span> ·<br />
-                    Bersiaplah...
+                <div class="flower-bloom">🌼</div>
+                <div style="font-size:1.2rem; color:#6cb4ee; margin-top:12px;">Bunga biru mekar...</div>
+                <button class="btn-next" onclick="goToPage(2)">➜ Lihat nama</button>
+                <div class="page-number">02</div>
+            </div>
+
+            <!-- ===== HALAMAN 3 ===== -->
+            <div class="page" id="page3">
+                <div class="flower-name" onclick="goToPage(3)">LUCIA</div>
+                <div class="sub-name">✦ dari bunga untukmu ✦</div>
+                <div style="font-size:0.8rem; color:#6a5a6a; margin-top:10px;">(klik namanya untuk lanjut)</div>
+                <div class="page-number">03</div>
+            </div>
+
+            <!-- ===== HALAMAN 4 ===== -->
+            <div class="page" id="page4">
+                <div class="title-special">🎭 PERTUNJUKAN SPESIAL</div>
+                <div class="sub-special">Khusus buat sayangku <strong style="color:#ff7a9e;">Nora</strong></div>
+                <div style="font-size:0.95rem; color:#b8a0b0; margin:8px 0;">untuk Nora</div>
+                <div style="font-size:0.9rem; color:#8a7a8a; margin-top:12px; border-top:1px solid rgba(255,255,255,0.05); padding-top:14px;">
+                    Buka tirai<br />tap tainya buat email cerita
                 </div>
-                <div style="font-size:0.8rem;color:rgba(255,255,255,0.12);margin-top:22px;letter-spacing:2px;">
-                    geser kembali untuk kembali
+                <button class="btn-next" onclick="goToPage(4)">➜ Buka tirai</button>
+                <div class="page-number">04</div>
+            </div>
+
+            <!-- ===== HALAMAN 5 ===== -->
+            <div class="page" id="page5">
+                <div class="babak-title">🌙 BABAK 1 / 3</div>
+                <div class="babak-content">
+                    <strong>rambut yang jatuhnya terlalu pas</strong><br /><br />
+                    sayang, rambut kamu di foto ini jatuhnya niat banget.<br />
+                    diagonalnya pas, acaknya cantik, beratkananya malah estetik.
                 </div>
+                <button class="btn-next" onclick="goToPage(5)">Lanjut cerita</button>
+                <div class="page-number">05</div>
+            </div>
+
+            <!-- ===== HALAMAN 6 ===== -->
+            <div class="page" id="page6">
+                <div class="babak-title">✨ BABAK 2 / 3</div>
+                <div class="babak-content">
+                    <strong>senyum kecil yang menang besar</strong><br /><br />
+                    senyum kamu kecil, tapi efeknya besar banget, sayang.<br />
+                    ngak banyak gaya, ngak perlu usaha keras, tapi tetap bikin aku kalah.
+                </div>
+                <button class="btn-next" onclick="goToPage(6)">Lanjut cerita</button>
+                <div class="page-number">06</div>
+            </div>
+
+            <!-- ===== HALAMAN 7 ===== -->
+            <div class="page" id="page7">
+                <div class="babak-title">☄️ BABAK 3 / 3</div>
+                <div class="babak-content">
+                    <strong>meteor pun kalah terang</strong><br /><br />
+                    andai batu meteor mendekati matahari buat adu terang,<br />
+                    aku tetap pilih kamu pemenangnya, sayangg.
+                </div>
+                <button class="btn-next" onclick="goToPage(7)">Lihat penutup</button>
+                <div class="page-number">07</div>
+            </div>
+
+            <!-- ===== HALAMAN 8 ===== -->
+            <div class="page" id="page8">
+                <div class="ovation-title">👏 STANDING OVATION</div>
+                <div style="font-size:2rem; margin:6px 0;">Mwehehehe</div>
+                <div class="babak-content" style="font-size:0.95rem;">
+                    sayangg, mungkin buat kamu ini cuma foto biasa.<br /><br />
+                    tapi buat aku, ini momen yang terlalu manis buat lewat begitu aja.
+                </div>
+                <div class="ovation-sign">— Raka, buat Nora</div>
+                <button class="btn-next" onclick="goToPage(8)">Lihat bouquet</button>
+                <div class="page-number">08</div>
+            </div>
+
+            <!-- ===== HALAMAN 9 ===== -->
+            <div class="page" id="page9">
+                <div class="apresiasi-title">🌸 APRESIASI</div>
+                <div class="flower-gift">🌹💐🌺</div>
+                <div class="apresiasi-sub">
+                    <strong>Thank You for Staying until Now</strong><br />
+                    Terima kasih karena tetap ada.
+                </div>
+                <div style="font-size:0.85rem; color:#8a7a8a; margin:6px 0;">
+                    Pink rose · Gratitude<br />
+                    Blue hydrangea · Gratitude
+                </div>
+                <div style="font-size:0.8rem; color:#6a5a6a; margin-top:8px;">*giftie dates*</div>
+                <button class="btn-next" onclick="goToPage(0)" style="background: #6cb4ee;">Back to edit</button>
+                <div class="page-number">09</div>
             </div>
 
         </div>
     </div>
 
     <script>
-        // =============================================
-        // 1. BUNGA & HATI JATUH
-        // =============================================
-        const items = ['🌸', '🌹', '💗', '🌺', '💖', '🌷', '💕', '🌼', '❤️', '🌻', '💝', '🥀'];
+        // ===== BUNGA JATUH =====
+        const items = ['🌸', '🌹', '💗', '🌺', '💖', '🌷', '🌼', '🌻', '💐'];
         const container = document.getElementById('petalsContainer');
-
-        for (let i = 0; i < 35; i++) {
+        for (let i = 0; i < 25; i++) {
             const el = document.createElement('div');
             el.className = 'falling-item';
             el.textContent = items[Math.floor(Math.random() * items.length)];
             el.style.left = Math.random() * 100 + '%';
-            el.style.fontSize = (1.0 + Math.random() * 2.0) + 'rem';
+            el.style.fontSize = (1 + Math.random() * 1.6) + 'rem';
             el.style.animationDuration = (8 + Math.random() * 14) + 's';
-            el.style.animationDelay = (Math.random() * 18) + 's';
-            el.style.opacity = 0.2 + Math.random() * 0.4;
+            el.style.animationDelay = (Math.random() * 16) + 's';
             container.appendChild(el);
         }
 
-        // =============================================
-        // 2. SPARKLE
-        // =============================================
-        const sparkleContainer = document.getElementById('sparkleContainer');
-        for (let i = 0; i < 60; i++) {
-            const s = document.createElement('div');
-            s.className = 'sparkle';
-            s.style.left = Math.random() * 100 + '%';
-            s.style.top = Math.random() * 100 + '%';
-            s.style.animationDelay = (Math.random() * 5) + 's';
-            s.style.animationDuration = (2 + Math.random() * 4) + 's';
-            s.style.width = (2 + Math.random() * 5) + 'px';
-            s.style.height = s.style.width;
-            sparkleContainer.appendChild(s);
-        }
-
-        // =============================================
-        // 3. SLIDE GESER
-        // =============================================
+        // ===== NAVIGASI =====
         const wrapper = document.getElementById('pagesWrapper');
-        const book = document.getElementById('bookContainer');
+        let currentPage = 0;
+        const totalPages = 9;
 
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
-        let isSwiped = false;
-        const SWIPE_THRESHOLD = 60;
-
-        // Touch
-        book.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        }, { passive: true });
-
-        book.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            currentX = e.touches[0].clientX;
-            const diff = startX - currentX;
-            if (isSwiped) {
-                if (diff < -20) {
-                    wrapper.style.transition = 'none';
-                    wrapper.style.transform = `translateX(${-50 + (diff / window.innerWidth) * 50}%)`;
-                }
-            } else {
-                if (diff > 20) {
-                    wrapper.style.transition = 'none';
-                    wrapper.style.transform = `translateX(${-(diff / window.innerWidth) * 50}%)`;
-                }
-            }
-        }, { passive: true });
-
-        book.addEventListener('touchend', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            const diff = startX - currentX;
-            if (isSwiped) {
-                if (diff < -SWIPE_THRESHOLD) {
-                    isSwiped = false;
-                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(0)';
-                } else {
-                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(-50%)';
-                }
-            } else {
-                if (diff > SWIPE_THRESHOLD) {
-                    isSwiped = true;
-                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(-50%)';
-                } else {
-                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(0)';
-                }
-            }
-            startX = 0;
-            currentX = 0;
-        }, { passive: true });
-
-        // Mouse
-        let mouseDown = false;
-        let mouseStartX = 0;
-
-        book.addEventListener('mousedown', (e) => {
-            mouseDown = true;
-            mouseStartX = e.clientX;
-            book.style.cursor = 'grabbing';
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (!mouseDown) return;
-            const diff = mouseStartX - e.clientX;
-            if (isSwiped) {
-                if (diff < -20) {
-                    wrapper.style.transition = 'none';
-                    wrapper.style.transform = `translateX(${-50 + (diff / window.innerWidth) * 50}%)`;
-                }
-            } else {
-                if (diff > 20) {
-                    wrapper.style.transition = 'none';
-                    wrapper.style.transform = `translateX(${-(diff / window.innerWidth) * 50}%)`;
-                }
-            }
-        });
-
-        window.addEventListener('mouseup', (e) => {
-            if (!mouseDown) return;
-            mouseDown = false;
-            book.style.cursor = 'grab';
-            const diff = mouseStartX - e.clientX;
-            if (isSwiped) {
-                if (diff < -SWIPE_THRESHOLD) {
-                    isSwiped = false;
-                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(0)';
-                } else {
-                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(-50%)';
-                }
-            } else {
-                if (diff > SWIPE_THRESHOLD) {
-                    isSwiped = true;
-                    wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(-50%)';
-                } else {
-                    wrapper.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
-                    wrapper.style.transform = 'translateX(0)';
-                }
-            }
-            mouseStartX = 0;
-        });
+        function goToPage(index) {
+            if (index < 0 || index >= totalPages) return;
+            currentPage = index;
+            wrapper.style.transform = `translateX(-${index * 11.11}%)`;
+        }
 
         // Keyboard
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' && !isSwiped) {
-                isSwiped = true;
-                wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                wrapper.style.transform = 'translateX(-50%)';
-            } else if (e.key === 'ArrowLeft' && isSwiped) {
-                isSwiped = false;
-                wrapper.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                wrapper.style.transform = 'translateX(0)';
+            if (e.key === 'ArrowRight' && currentPage < totalPages - 1) {
+                goToPage(currentPage + 1);
+            } else if (e.key === 'ArrowLeft' && currentPage > 0) {
+                goToPage(currentPage - 1);
             }
         });
 
-        console.log('💐 Untuk Lucia Ku Tersayang — Halaman 1 siap!');
+        // Swipe
+        let startX = 0;
+        const book = document.getElementById('bookContainer');
+
+        book.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        book.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentPage < totalPages - 1) {
+                    goToPage(currentPage + 1);
+                } else if (diff < 0 && currentPage > 0) {
+                    goToPage(currentPage - 1);
+                }
+            }
+        }, { passive: true });
+
+        console.log('🌹 Buku digital untuk Nora siap!');
     </script>
 </body>
 </html>
